@@ -13,7 +13,19 @@
         android:layout_height="wrap_content"
         android:textSize="50sp"
         android:layout_gravity="center"
-        android:padding="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        />
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
         />
 
     <TextView
@@ -22,6 +34,7 @@
         android:layout_height="wrap_content"
         android:text="@string/select_time_zone"
         android:textSize="20sp"
+        android:clickable="true"
         android:paddingLeft="50dp"
         android:paddingRight="16dp"
         android:paddingBottom="16dp"
