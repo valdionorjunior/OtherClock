@@ -1,8 +1,11 @@
 package br.com.rodrigues.junior.otherclock;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,6 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 public class MainClock extends AppCompatActivity implements View.OnClickListener{
 
@@ -37,6 +41,7 @@ public class MainClock extends AppCompatActivity implements View.OnClickListener
             }
         });
 
+
         mySelectTimeZone.setOnClickListener(this);
 
     }
@@ -48,23 +53,30 @@ public class MainClock extends AppCompatActivity implements View.OnClickListener
     private String updateTime(String simpleFormat) {
 
         Calendar calendar = new GregorianCalendar();
-        DateFormat df;
-
-        df = new SimpleDateFormat(simpleFormat);
-
-        //int h = calendar.get(Calendar.HOUR_OF_DAY);
-        //int m = calendar.get(Calendar.MINUTE);
-        //int s = calendar.get(Calendar.SECOND);
-
-        //return h+":"+m+":"+s;
+        DateFormat df = new SimpleDateFormat(simpleFormat);
 
         return String.valueOf(df.format(calendar.getTime()));
-
-
     }
 
     @Override
     public void onClick(View v) {
         mySelectTimeZone.setText("Anda não é o que eu quero");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.settings_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int menuItemTheWasSelected = item.getItemId();
+        if(menuItemTheWasSelected == R.id.action_settings){
+            Intent intent = new Intent(MainClock.this,SelectTimeZone.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

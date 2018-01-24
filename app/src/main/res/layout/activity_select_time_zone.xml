@@ -16,19 +16,15 @@
         android:padding="16dp"
         />
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-        android:id="@+id/tv_display_time_zone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Texto Time Zone"
-        android:textSize="20sp"
-        android:paddingLeft="50dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        />
+        <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_display_time_zone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
     </ScrollView>
 
 
