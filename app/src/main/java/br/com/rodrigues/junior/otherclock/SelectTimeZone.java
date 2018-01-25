@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class SelectTimeZone extends AppCompatActivity {
     private static final int TIME_ZONE_ID = 0;
 
-    private TimeZoneAdapter mtimeZoneAdapter;
+    private TimeZoneAdapter mTimeZoneAdapter;
     private RecyclerView myDisplayTimeZone;
 
 
@@ -34,8 +34,8 @@ public class SelectTimeZone extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         myDisplayTimeZone.setLayoutManager(layoutManager);
         myDisplayTimeZone.setHasFixedSize(true);
-        mtimeZoneAdapter = new TimeZoneAdapter(TIME_ZONE_ID);
-        myDisplayTimeZone.setAdapter(mtimeZoneAdapter);
+        mTimeZoneAdapter = new TimeZoneAdapter(TIME_ZONE_ID);
+        myDisplayTimeZone.setAdapter(mTimeZoneAdapter);
 
         //pegando fusorario
         String [] ids = TimeZone.getAvailableIDs();
