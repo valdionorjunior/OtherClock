@@ -2,62 +2,65 @@ package br.com.rodrigues.junior.otherclock;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
-
 /**
  * Created by junior on 24/01/18.
  */
 
-public class TimeZoneAdapter extends RecyclerView.Adapter<TimeZoneAdapter.NumberViewHolder>{
+public class TimeZoneAdapter extends RecyclerView.Adapter<TimeZoneAdapter.TimeZoneAdapterViewHolder>{
 
-    private  int mNumerItems;
 
-    public TimeZoneAdapter(int numberOfItems){
-        mNumerItems = numberOfItems;
+    private String[] mTimeZones;
+
+    public TimeZoneAdapter(String [] Timezone){
+        setTimeZones(Timezone);
+    }
+
+
+    public class TimeZoneAdapterViewHolder extends RecyclerView.ViewHolder{
+        private final TextView myListItemTimeZone;
+
+
+        public TimeZoneAdapterViewHolder(View view) {
+            super(view);
+            myListItemTimeZone = (TextView) view.findViewById(R.id.tv_time_zone_item);
+        }
+
+    }
+
+    public void setTimeZones(String[] mTimeZones) {
+        this.mTimeZones = mTimeZones;
+        notifyDataSetChanged();
     }
 
     @Override
-    public NumberViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public TimeZoneAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
         int layoutIdForListItem = R.layout.time_zone_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
 
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
-        NumberViewHolder viewHolder = new NumberViewHolder(view);
+        return new TimeZoneAdapterViewHolder(view);
 
-        return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(NumberViewHolder holder, int position) {
-        holder.bind(position);
+    public void onBindViewHolder(TimeZoneAdapterViewHolder timeZoneAdapterViewHolder, int position) {
+        timeZoneAdapterViewHolder.myListItemTimeZone.setText(mTimeZones[position]);
 
     }
 
     @Override
     public int getItemCount() {
-        return mNumerItems;
+        if(mTimeZones==null){
+            return 0;
+        }
+        return mTimeZones.length;
     }
 
-    public class NumberViewHolder extends RecyclerView.ViewHolder{
-        private TextView myListItemTimeZone;
-
-
-        public NumberViewHolder(View itemView) {
-            super(itemView);
-            myListItemTimeZone = (TextView) itemView.findViewById(R.id.tv_time_zone_item);
-        }
-
-        public void bind(int listIndex){
-            myListItemTimeZone.setText(String.valueOf(listIndex));
-        }
-    }
 }
